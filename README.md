@@ -1,5 +1,7 @@
 # Advent of Code 2025
 
+[![Go](https://github.com/abeltay/advent-of-code-2025/actions/workflows/go.yml/badge.svg)](https://github.com/abeltay/advent-of-code-2025/actions/workflows/go.yml)
+
 My attempt at <https://adventofcode.com/2025>
 
 > Note: All task input files are excluded from the repository with ".gitignore" – we should not post them publicly, as Eric Wastl asks for: [Tweet](https://twitter.com/ericwastl/status/1465805354214830081).
