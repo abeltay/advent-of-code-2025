@@ -7,7 +7,7 @@ My attempt at <https://adventofcode.com/2025>
 > Note: All task input files are excluded from the repository with ".gitignore" – we should not post them publicly, as Eric Wastl asks for: [Tweet](https://twitter.com/ericwastl/status/1465805354214830081).
 
 # To run the scripts
-1. Run `make DAY=01 prep` with the day number. The example here is for Day 01
+1. Run `make prep DAY=01` with the day number. The example here is for Day 01
 2. Run `make input` to download the input file into the day's folder
 
 ## To set up cookie for `make input`
