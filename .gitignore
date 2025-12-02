@@ -9,3 +9,7 @@ day.txt
 build
 src/Day??.txt
 local.properties
+
+# include file templates
+!.idea/file.template.settings.xml
+!.idea/fileTemplates
