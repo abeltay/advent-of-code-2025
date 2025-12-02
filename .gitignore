@@ -1,6 +1,11 @@
 # Temp files
-day.txt
 cookie.txt
+day.txt
 
-# These are input files
-??/testdata/input.txt
+# Kotlin files
+.gradle
+.idea
+.kotlin/
+build
+src/Day??.txt
+local.properties
