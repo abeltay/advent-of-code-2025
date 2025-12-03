@@ -12,7 +12,7 @@ fun main() {
         return input
     }
     fun part1(input: List<String>): Int {
-        val nextInput = parseInput(input)
+        val parsed = parseInput(input)
         var answer = 0
         println(answer)
         return answer
@@ -24,7 +24,7 @@ fun main() {
 
     val testInput = readInput("Day01_test")
     check(part1(testInput) == 0)
-    // check(part2(testInput) == 0)
+    check(part2(testInput) == 0)
 
     val input = readInput("Day01")
     println(part1(input))
