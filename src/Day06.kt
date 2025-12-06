@@ -1,44 +1,10 @@
 fun main() {
-    fun parseInput(input: List<String>): Pair<List<List<Int>>, List<String>> {
-        val inputLineRegex = "\\s+".toRegex()
-
-        val numbers = mutableListOf<List<Int>>()
-        var symbol = listOf<String>()
-        for (it in input) {
-            if (it[0] != '*') {
-                val line = it.trim().split(inputLineRegex)
-                val ints = line.map { it.toInt() }
-                numbers.add(ints)
-                continue
-            }
-            symbol = it.split(inputLineRegex)
+    fun padSymbols(input: String, length: Int): List<Char> {
+        val symbols = input.toMutableList()
+        while (symbols.size < length) {
+            symbols.add(' ') // Pad the input back to original values
         }
-        return Pair(numbers, symbol)
-    }
-
-    fun calculate(numbers: List<List<Int>>, symbol: List<String>, ptr: Int): Long {
-        var answer: Long = 0
-        for (i in numbers.indices) {
-            if (i == 0) {
-                answer = numbers[i][ptr].toLong()
-                continue
-            }
-            if (symbol[ptr] == "*") {
-                answer *= numbers[i][ptr].toLong()
-            } else {
-                answer += numbers[i][ptr].toLong()
-            }
-        }
-        return answer
-    }
-
-    fun part1(input: List<String>): Long {
-        val parsed = parseInput(input)
-        var answer: Long = 0
-        for (i in parsed.first.first().indices) {
-            answer += calculate(parsed.first, parsed.second, i)
-        }
-        return answer
+        return symbols
     }
 
     fun findNext(last: List<Char>, from: Int): Int {
@@ -54,14 +20,11 @@ fun main() {
 
     fun formNumbers(input: List<String>, from: Int, to: Int): List<Long> {
         val numbers = mutableListOf<Long>()
-        for (i in from until to) {
-            var nextNum = ""
-            for (j in input.indices) {
-                if (j == input.size - 1) {
-                    break
-                }
-                nextNum += input[j][i]
+        for (j in input.indices) {
+            if (j == input.size - 1) {
+                break
             }
+            val nextNum = input[j].substring(from, to)
             numbers.add(nextNum.trim().toLong())
         }
         return numbers
@@ -77,16 +40,41 @@ fun main() {
         }
     }
 
-    fun part2(input: List<String>): Long {
-        val symbols = input[input.size - 1].toMutableList()
-        while (symbols.size < input[0].length) {
-            symbols.add(' ') // Pad the input back to original values
-        }
+    fun part1(input: List<String>): Long {
+        val symbols = padSymbols(input[input.size - 1], input[0].length)
         var ptr = 0
         var answer: Long = 0
         while (ptr < input[0].length) {
             val next = findNext(symbols, ptr)
             val num = formNumbers(input, ptr, next)
+            answer += calculate(num, input[input.size - 1][ptr].toString())
+            ptr = next + 1
+        }
+        return answer
+    }
+
+    fun formNumbers2(input: List<String>, from: Int, to: Int): List<Long> {
+        val numbers = mutableListOf<Long>()
+        for (i in from until to) {
+            var nextNum = ""
+            for (j in input.indices) {
+                if (j == input.size - 1) {
+                    break
+                }
+                nextNum += input[j][i]
+            }
+            numbers.add(nextNum.trim().toLong())
+        }
+        return numbers
+    }
+
+    fun part2(input: List<String>): Long {
+        val symbols = padSymbols(input[input.size - 1], input[0].length)
+        var ptr = 0
+        var answer: Long = 0
+        while (ptr < input[0].length) {
+            val next = findNext(symbols, ptr)
+            val num = formNumbers2(input, ptr, next)
             answer += calculate(num, input[input.size - 1][ptr].toString())
             ptr = next + 1
         }
