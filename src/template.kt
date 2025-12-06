@@ -13,6 +13,7 @@ fun main() {
     }
     fun part1(input: List<String>): Int {
         val parsed = parseInput(input)
+        println(parsed)
         var answer = 0
         println(answer)
         return answer
