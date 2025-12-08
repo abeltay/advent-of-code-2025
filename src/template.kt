@@ -11,21 +11,22 @@ fun main() {
 
         return input
     }
-    fun part1(input: List<String>): Int {
+
+    fun part1(input: List<String>): Long {
         val parsed = parseInput(input)
         println(parsed)
-        var answer = 0
+        var answer: Long = 0
         println(answer)
         return answer
     }
 
-    fun part2(input: List<String>): Int {
+    fun part2(input: List<String>): Long {
         return 0
     }
 
     val testInput = readInput("Day01_test")
-    check(part1(testInput) == 0)
-    check(part2(testInput) == 0)
+    check(part1(testInput) == 0.toLong())
+    check(part2(testInput) == 0.toLong())
 
     val input = readInput("Day01")
     println(part1(input))
